@@ -31,19 +31,22 @@ public class FlightBookingTest {
         waitFor(2000);
         List<WebElement> originOptions = driver.findElement(By.id("ui-id-1")).findElements(By.tagName("li"));
         originOptions.get(0).click();
-
-        driver.findElement(By.id("toTag")).clear();
-        driver.findElement(By.id("toTag")).sendKeys("Delhi");
+        // Ayush: ID changed from toTag to ToTag
+        driver.findElement(By.id("ToTag")).clear();
+        driver.findElement(By.id("ToTag")).sendKeys("Delhi");
 
         //wait for the auto complete options to appear for the destination
 
         waitFor(2000);
-        //select the first item from the destination auto complete list
+        //Ayush: select the first item from the destination auto complete list
         List<WebElement> destinationOptions = driver.findElement(By.id("ui-id-2")).findElements(By.tagName("li"));
+        System.out.println(destinationOptions.size());
         destinationOptions.get(0).click();
-
-        driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div[1]/table/tbody/tr[3]/td[7]/a")).click();
-
+        // Ayush: Below Xpath try to selects 15th but we need dynamic
+        //Ayush: driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div[1]/table/tbody/tr[3]/td[7]/a")).click();
+        // Ayush: For now assuming todays date
+        driver.findElement(By.className("ui-datepicker-days-cell-over")).click();
+        
         //all fields filled in. Now click on search
         driver.findElement(By.id("SearchBtn")).click();
 
